@@ -1,0 +1,83 @@
+ body{
+ font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 100%;
+            overflow-x: auto; /* Allow horizontal scrolling for table on small screens */
+        }
+        table {
+            min-width: 1400px; /* Increased min-width to accommodate new column structure */
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 8px 12px; /* Reduced padding slightly for more compact cells */
+            text-align: left;
+        }
+        th {
+            background-color: #1f2937;
+            color: #f9fafb;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        td {
+            background-color: #ffffff;
+        }
+        tr:nth-child(even) td {
+            background-color: #f9fafb;
+        }
+        .attendance-checkbox {
+            transform: scale(1.1); /* Slightly smaller checkbox */
+            margin: auto;
+            display: block;
+            margin-bottom: 4px; /* Space between checkbox and select */
+        }
+        .sticky-col {
+            position: sticky;
+            left: 0;
+            background-color: #ffffff;
+            z-index: 1;
+        }
+        .sticky-col-header {
+            position: sticky;
+            left: 0;
+            background-color: #1f2937;
+            z-index: 11; /* Higher than other th */
+        }
+        .button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        .button-primary {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .button-primary:hover {
+            background-color: #4338ca;
+        }
+        .button-secondary {
+            background-color: #ef4444;
+            color: white;
+        }
+        .button-secondary:hover {
+            background-color: #dc2626;
+        }
+        .class-mode-select {
+            padding: 4px 6px; /* Reduced padding for select */
+            border-radius: 6px;
+            border: 1px solid #d1d5db;
+            background-color: #f9fafb;
+            font-size: 0.8rem; /* Smaller font size for select */
+            width: 100%; /* Make select fill the cell */
+        }

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Kuliah & Kehadiran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+
+
+    <body class="p-6">
+
+    <div class="container mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Jadwal Kuliah Semester Ini</h1>
+
+        <div class="mb-6 flex flex-wrap justify-center gap-4">
+            <button id="resetButton" class="button button-secondary">Reset Kehadiran & Mode Kelas</button>
+            <button id="copyButton" class="button button-primary">Salin Jadwal (CSV)</button>
+        </div>
+
+        <div class="overflow-x-auto rounded-lg shadow-md">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase">
+                    <tr>
+                        <th scope="col" class="py-3 px-6 sticky-col-header rounded-tl-lg">Hari</th>
+                        <th scope="col" class="py-3 px-6 sticky-col-header">Mata Kuliah</th>
+                        <th scope="col" class="py-3 px-6">Jam</th>
+                        <th scope="col" class="py-3 px-6">Dosen</th>
+                        <th scope="col" class="py-3 px-6">Ruang</th>
+                        <!-- Generate 16 attendance columns -->
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<th scope="col" class="py-3 px-6 ' + (i === 16 ? 'rounded-tr-lg' : '') + '">Pertemuan ' + i + '</th>');
+                            }
+                        </script>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- Kelas Malam SI 6 -->
+                    <tr class="border-b border-gray-200 bg-gray-50">
+                        <td colspan="21" class="py-4 px-6 font-bold text-lg text-gray-800 text-center">KELAS MALAM SI 6</td> <!-- colspan adjusted -->
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Senin</td>
+                        <td class="py-4 px-6">Etika & Hkm Cyber</td>
+                        <td class="py-4 px-6">18:30</td>
+                        <td class="py-4 px-6">Bayu</td>
+                        <td class="py-4 px-6">FB402</td>
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<td class="py-4 px-6 text-center">');
+                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="Etika & Hkm Cyber Malam" data-meeting="' + i + '">');
+                                document.write('<select class="class-mode-select" data-subject="Etika & Hkm Cyber Malam" data-meeting="' + i + '">');
+                                document.write('<option value="Offline">Offline</option>');
+                                document.write('<option value="Online">Online</option>');
+                                document.write('<option value="Libur">Libur</option>');
+                                document.write('</select>');
+                                document.write('</td>');
+                            }
+                        </script>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Senin</td>
+                        <td class="py-4 px-6">SIA</td>
+                        <td class="py-4 px-6">20:00</td>
+                        <td class="py-4 px-6">Dwi</td>
+                        <td class="py-4 px-6">FB402</td>
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<td class="py-4 px-6 text-center">');
+                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="SIA Malam" data-meeting="' + i + '">');
+                                document.write('<select class="class-mode-select" data-subject="SIA Malam" data-meeting="' + i + '">');
+                                document.write('<option value="Offline">Offline</option>');
+                                document.write('<option value="Online">Online</option>');
+                                document.write('<option value="Libur">Libur</option>');
+                                document.write('</select>');
+                                document.write('</td>');
+                            }
+                        </script>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Selasa</td>
+                        <td class="py-4 px-6">RPL</td>
+                        <td class="py-4 px-6">18:30</td>
+                        <td class="py-4 px-6">Win</td>
+                        <td class="py-4 px-6">FK406</td>
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<td class="py-4 px-6 text-center">');
+                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="RPL Malam" data-meeting="' + i + '">');
+                                document.write('<select class="class-mode-select" data-subject="RPL Malam" data-meeting="' + i + '">');
+                                document.write('<option value="Offline">Offline</option>');
+                                document.write('<option value="Online">Online</option>');
+                                document.write('<option value="Libur">Libur</option>');
+                                document.write('</select>');
+                                document.write('</td>');
+                            }
+                        </script>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Selasa</td>
+                        <td class="py-4 px-6">Mobile Programing</td>
+                        <td class="py-4 px-6">20:00</td>
+                        <td class="py-4 px-6">Nuri</td>
+                        <td class="py-4 px-6">LABPS501</td>
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<td class="py-4 px-6 text-center">');
+                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="Mobile Programing Malam" data-meeting="' + i + '">');
+                                document.write('<select class="class-mode-select" data-subject="Mobile Programing Malam" data-meeting="' + i + '">');
+                                document.write('<option value="Offline">Offline</option>');
+                                document.write('<option value="Online">Online</option>');
+                                document.write('<option value="Libur">Libur</option>');
+                                document.write('</select>');
+                                document.write('</td>');
+                            }
+                        </script>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Rabu</td>
+                        <td class="py-4 px-6">E-commerce & Web</td>
+                        <td class="py-4 px-6">20:00</td>
+                        <td class="py-4 px-6">Jaka</td>
+                        <td class="py-4 px-6">FK206</td>
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<td class="py-4 px-6 text-center">');
+                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="E-commerce & Web Malam" data-meeting="' + i + '">');
+                                document.write('<select class="class-mode-select" data-subject="E-commerce & Web Malam" data-meeting="' + i + '">');
+                                document.write('<option value="Offline">Offline</option>');
+                                document.write('<option value="Online">Online</option>');
+                                document.write('<option value="Libur">Libur</option>');
+                                document.write('</select>');
+                                document.write('</td>');
+                            }
+                        </script>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Sabtu</td>
+                        <td class="py-4 px-6">VB Net. 2/ASP</td>
+                        <td class="py-4 px-6">18:30</td>
+                        <td class="py-4 px-6">Roso</td>
+                        <td class="py-4 px-6">LABFB601</td>
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<td class="py-4 px-6 text-center">');
+                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="VB Net. 2/ASP Malam" data-meeting="' + i + '">');
+                                document.write('<select class="class-mode-select" data-subject="VB Net. 2/ASP Malam" data-meeting="' + i + '">');
+                                document.write('<option value="Offline">Offline</option>');
+                                document.write('<option value="Online">Online</option>');
+                                document.write('<option value="Libur">Libur</option>');
+                                document.write('</select>');
+                                document.write('</td>');
+                            }
+                        </script>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Sabtu</td>
+                        <td class="py-4 px-6">Keamanan Komp</td>
+                        <td class="py-4 px-6">20:00</td>
+                        <td class="py-4 px-6">Mano</td>
+                        <td class="py-4 px-6">FB202</td>
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<td class="py-4 px-6 text-center">');
+                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="Keamanan Komp Malam" data-meeting="' + i + '">');
+                                document.write('<select class="class-mode-select" data-subject="Keamanan Komp Malam" data-meeting="' + i + '">');
+                                document.write('<option value="Offline">Offline</option>');
+                                document.write('<option value="Online">Online</option>');
+                                document.write('<option value="Libur">Libur</option>');
+                                document.write('</select>');
+                                document.write('</td>');
+                            }
+                        </script>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Absence Summary Section -->
+        <div id="absenceSummary" class="mt-8 p-6 bg-gray-50 rounded-lg shadow-md">
+            <!-- Summary will be populated here by JavaScript -->
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
