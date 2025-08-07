@@ -1,4 +1,4 @@
- body{
+body{
  font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
             color: #374151;
@@ -80,4 +80,33 @@
             background-color: #f9fafb;
             font-size: 0.8rem; /* Smaller font size for select */
             width: 100%; /* Make select fill the cell */
+        }
+
+        /* --- New responsive styles for mobile --- */
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            .button {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            /* Remove fixed min-width on mobile */
+            table {
+                min-width: 0;
+            }
+
+            /* Hide unnecessary columns on small screens */
+            .hidden {
+                display: none;
+            }
+
+            /* Make meeting cells take up less space */
+            .meeting-cell {
+                padding: 8px 6px;
+            }
+            .class-mode-select {
+                font-size: 0.7rem;
+            }
         }
