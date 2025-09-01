@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal Kuliah</title>
+    <title>Jadwal Kuliah SI 7</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
@@ -12,10 +13,11 @@
 <body class="p-4 sm:p-6">
 
     <div class="container mx-auto bg-white shadow-lg rounded-lg p-4 sm:p-6">
-        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6 text-center">Jadwal Kuliah Semester Ini</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6 text-center">Jadwal Kuliah Semester 7</h1>
 
         <div class="mb-4 sm:mb-6 flex flex-wrap justify-center gap-2 sm:gap-4">
-            <button id="resetButton" class="button button-secondary text-sm sm:text-base">Reset Kehadiran & Mode Kelas</button>
+            <button id="resetButton" class="button button-secondary text-sm sm:text-base">Reset Kehadiran & Mode
+                Kelas</button>
             <button id="copyButton" class="button button-primary text-sm sm:text-base">Salin Jadwal (CSV)</button>
         </div>
 
@@ -30,7 +32,8 @@
                         <th scope="col" class="py-3 px-3 sm:px-6 hidden sm:table-cell">Ruang</th>
                         <script>
                             for (let i = 1; i <= 16; i++) {
-                                document.write('<th scope="col" class="py-3 px-3 sm:px-6 meeting-col ' + (i === 16 ? 'rounded-tr-lg' : '') + '">Pertemuan ' + i + '</th>');
+                                document.write('<th scope="col" class="py-3 px-3 sm:px-6 meeting-col ' + (i === 16 ?
+                                    'rounded-tr-lg' : '') + '">Pertemuan ' + i + '</th>');
                             }
                         </script>
                     </tr>
@@ -38,19 +41,24 @@
                 <tbody>
 
                     <tr class="border-b border-gray-200 bg-gray-50">
-                        <td colspan="21" class="py-4 px-6 font-bold text-lg text-gray-800 text-center">KELAS MALAM SI 6</td>
+                        <td colspan="21" class="py-4 px-6 font-bold text-lg text-gray-800 text-center">KELAS MALAM SI 6
+                        </td>
                     </tr>
                     <tr class="border-b border-gray-200">
                         <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Senin</td>
-                        <td class="py-4 px-6">Etika & Hkm Cyber</td>
+                        <td class="py-4 px-6">Big Data & Business Int</td>
                         <td class="py-4 px-6 hidden sm:table-cell">18:30</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">Bayu</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">FB402</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">Adiyanto</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">FK401</td>
                         <script>
                             for (let i = 1; i <= 16; i++) {
                                 document.write('<td class="py-4 px-6 text-center meeting-cell">');
-                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="Etika & Hkm Cyber Malam" data-meeting="' + i + '">');
-                                document.write('<select class="class-mode-select" data-subject="Etika & Hkm Cyber Malam" data-meeting="' + i + '">');
+                                document.write(
+                                    '<input type="checkbox" class="attendance-checkbox" data-subject="Etika & Hkm Cyber Malam" data-meeting="' +
+                                    i + '">');
+                                document.write(
+                                    '<select class="class-mode-select" data-subject="Etika & Hkm Cyber Malam" data-meeting="' +
+                                    i + '">');
                                 document.write('<option value="Offline">Offline</option>');
                                 document.write('<option value="Online">Online</option>');
                                 document.write('<option value="Libur">Libur</option>');
@@ -61,15 +69,19 @@
                     </tr>
                     <tr class="border-b border-gray-200">
                         <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Senin</td>
-                        <td class="py-4 px-6">SIA</td>
+                        <td class="py-4 px-6">Technopreneurship</td>
                         <td class="py-4 px-6 hidden sm:table-cell">20:00</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">Dwi</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">FB402</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">Aminul</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">FK401</td>
                         <script>
                             for (let i = 1; i <= 16; i++) {
                                 document.write('<td class="py-4 px-6 text-center meeting-cell">');
-                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="SIA Malam" data-meeting="' + i + '">');
-                                document.write('<select class="class-mode-select" data-subject="SIA Malam" data-meeting="' + i + '">');
+                                document.write(
+                                    '<input type="checkbox" class="attendance-checkbox" data-subject="SIA Malam" data-meeting="' +
+                                    i + '">');
+                                document.write(
+                                    '<select class="class-mode-select" data-subject="SIA Malam" data-meeting="' +
+                                    i + '">');
                                 document.write('<option value="Offline">Offline</option>');
                                 document.write('<option value="Online">Online</option>');
                                 document.write('<option value="Libur">Libur</option>');
@@ -80,15 +92,19 @@
                     </tr>
                     <tr class="border-b border-gray-200">
                         <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Selasa</td>
-                        <td class="py-4 px-6">RPL</td>
+                        <td class="py-4 px-6">M. proyek SI</td>
                         <td class="py-4 px-6 hidden sm:table-cell">18:30</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">Win</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">FK406</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">Jainuri</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">FK203</td>
                         <script>
                             for (let i = 1; i <= 16; i++) {
                                 document.write('<td class="py-4 px-6 text-center meeting-cell">');
-                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="RPL Malam" data-meeting="' + i + '">');
-                                document.write('<select class="class-mode-select" data-subject="RPL Malam" data-meeting="' + i + '">');
+                                document.write(
+                                    '<input type="checkbox" class="attendance-checkbox" data-subject="RPL Malam" data-meeting="' +
+                                    i + '">');
+                                document.write(
+                                    '<select class="class-mode-select" data-subject="RPL Malam" data-meeting="' +
+                                    i + '">');
                                 document.write('<option value="Offline">Offline</option>');
                                 document.write('<option value="Online">Online</option>');
                                 document.write('<option value="Libur">Libur</option>');
@@ -99,15 +115,19 @@
                     </tr>
                     <tr class="border-b border-gray-200">
                         <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Selasa</td>
-                        <td class="py-4 px-6">Mobile Programing</td>
+                        <td class="py-4 px-6">Metodologi Penelitian</td>
                         <td class="py-4 px-6 hidden sm:table-cell">20:00</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">Nuri</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">LABPS501</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">Winanti</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">FK203</td>
                         <script>
                             for (let i = 1; i <= 16; i++) {
                                 document.write('<td class="py-4 px-6 text-center meeting-cell">');
-                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="Mobile Programing Malam" data-meeting="' + i + '">');
-                                document.write('<select class="class-mode-select" data-subject="Mobile Programing Malam" data-meeting="' + i + '">');
+                                document.write(
+                                    '<input type="checkbox" class="attendance-checkbox" data-subject="Mobile Programing Malam" data-meeting="' +
+                                    i + '">');
+                                document.write(
+                                    '<select class="class-mode-select" data-subject="Mobile Programing Malam" data-meeting="' +
+                                    i + '">');
                                 document.write('<option value="Offline">Offline</option>');
                                 document.write('<option value="Online">Online</option>');
                                 document.write('<option value="Libur">Libur</option>');
@@ -118,34 +138,19 @@
                     </tr>
                     <tr class="border-b border-gray-200">
                         <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Rabu</td>
-                        <td class="py-4 px-6">E-commerce & Web</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">20:00</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">Jaka</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">FK206</td>
-                        <script>
-                            for (let i = 1; i <= 16; i++) {
-                                document.write('<td class="py-4 px-6 text-center meeting-cell">');
-                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="E-commerce & Web Malam" data-meeting="' + i + '">');
-                                document.write('<select class="class-mode-select" data-subject="E-commerce & Web Malam" data-meeting="' + i + '">');
-                                document.write('<option value="Offline">Offline</option>');
-                                document.write('<option value="Online">Online</option>');
-                                document.write('<option value="Libur">Libur</option>');
-                                document.write('</select>');
-                                document.write('</td>');
-                            }
-                        </script>
-                    </tr>
-                    <tr class="border-b border-gray-200">
-                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Sabtu</td>
-                        <td class="py-4 px-6">VB Net. 2/ASP</td>
+                        <td class="py-4 px-6">Teknik Riset Oprsl</td>
                         <td class="py-4 px-6 hidden sm:table-cell">18:30</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">Roso</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">LABFB601</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">Nana</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">FB303</td>
                         <script>
                             for (let i = 1; i <= 16; i++) {
                                 document.write('<td class="py-4 px-6 text-center meeting-cell">');
-                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="VB Net. 2/ASP Malam" data-meeting="' + i + '">');
-                                document.write('<select class="class-mode-select" data-subject="VB Net. 2/ASP Malam" data-meeting="' + i + '">');
+                                document.write(
+                                    '<input type="checkbox" class="attendance-checkbox" data-subject="E-commerce & Web Malam" data-meeting="' +
+                                    i + '">');
+                                document.write(
+                                    '<select class="class-mode-select" data-subject="E-commerce & Web Malam" data-meeting="' +
+                                    i + '">');
                                 document.write('<option value="Offline">Offline</option>');
                                 document.write('<option value="Online">Online</option>');
                                 document.write('<option value="Libur">Libur</option>');
@@ -155,16 +160,20 @@
                         </script>
                     </tr>
                     <tr class="border-b border-gray-200">
-                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Sabtu</td>
-                        <td class="py-4 px-6">Keamanan Komp</td>
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Rabu</td>
+                        <td class="py-4 px-6">Testing & Imple sis</td>
                         <td class="py-4 px-6 hidden sm:table-cell">20:00</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">Mano</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">FB202</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">Nurasiah</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">FB303</td>
                         <script>
                             for (let i = 1; i <= 16; i++) {
                                 document.write('<td class="py-4 px-6 text-center meeting-cell">');
-                                document.write('<input type="checkbox" class="attendance-checkbox" data-subject="Keamanan Komp Malam" data-meeting="' + i + '">');
-                                document.write('<select class="class-mode-select" data-subject="Keamanan Komp Malam" data-meeting="' + i + '">');
+                                document.write(
+                                    '<input type="checkbox" class="attendance-checkbox" data-subject="VB Net. 2/ASP Malam" data-meeting="' +
+                                    i + '">');
+                                document.write(
+                                    '<select class="class-mode-select" data-subject="VB Net. 2/ASP Malam" data-meeting="' +
+                                    i + '">');
                                 document.write('<option value="Offline">Offline</option>');
                                 document.write('<option value="Online">Online</option>');
                                 document.write('<option value="Libur">Libur</option>');
@@ -178,7 +187,7 @@
         </div>
 
         <div id="absenceSummary" class="mt-8 p-6 bg-gray-50 rounded-lg shadow-md">
-            </div>
+        </div>
     </div>
     <script type="module" src="script.js"></script>
 </body>
