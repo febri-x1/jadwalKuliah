@@ -1,16 +1,15 @@
-
-        // Function to save attendance state and class modes to localStorage
+// Function to save attendance state and class modes to localStorage
         function saveState() {
             const attendance = {};
             const classModes = {};
 
-            document.querySelectorAll('.attendance-checkbox').forEach(checkbox => {
-                const subject = checkbox.dataset.subject;
-                const meeting = checkbox.dataset.meeting;
+            document.querySelectorAll('.attendance-select').forEach(select => {
+                const subject = select.dataset.subject;
+                const meeting = select.dataset.meeting;
                 if (!attendance[subject]) {
                     attendance[subject] = {};
                 }
-                attendance[subject][meeting] = checkbox.checked;
+                attendance[subject][meeting] = select.value;
             });
             localStorage.setItem('kuliahAttendance', JSON.stringify(attendance));
 
@@ -32,11 +31,11 @@
             const savedAttendance = localStorage.getItem('kuliahAttendance');
             if (savedAttendance) {
                 const attendance = JSON.parse(savedAttendance);
-                document.querySelectorAll('.attendance-checkbox').forEach(checkbox => {
-                    const subject = checkbox.dataset.subject;
-                    const meeting = checkbox.dataset.meeting;
-                    if (attendance[subject] && attendance[subject][meeting] !== undefined) {
-                        checkbox.checked = attendance[subject][meeting];
+                document.querySelectorAll('.attendance-select').forEach(select => {
+                    const subject = select.dataset.subject;
+                    const meeting = select.dataset.meeting;
+                    if (attendance[subject] && attendance[subject][meeting]) {
+                        select.value = attendance[subject][meeting];
                     }
                 });
             }
@@ -56,47 +55,55 @@
 
         // Function to update the absence summary
         function updateAbsenceSummary() {
-            const absenceData = {}; // { "Mata Kuliah": { total: 16, attended: 0, absent: 0 } }
+            const attendanceData = {}; // { "Mata Kuliah": { total: 16, hadir: 0, sakit: 0, izin: 0, tidakHadir: 0 } }
 
-            // Initialize all subjects with 0 attended and 0 absent
+            // Initialize all subjects
             const allSubjects = new Set();
-            document.querySelectorAll('.attendance-checkbox').forEach(checkbox => {
-                allSubjects.add(checkbox.dataset.subject);
+            document.querySelectorAll('.attendance-select').forEach(select => {
+                allSubjects.add(select.dataset.subject);
             });
 
             allSubjects.forEach(subject => {
-                absenceData[subject] = { total: 16, attended: 0, absent: 0 };
+                attendanceData[subject] = { total: 16, hadir: 0, sakit: 0, izin: 0, tidakHadir: 0 };
             });
 
-            // Count attended meetings
-            document.querySelectorAll('.attendance-checkbox').forEach(checkbox => {
-                const subject = checkbox.dataset.subject;
-                if (checkbox.checked) {
-                    absenceData[subject].attended++;
+            // Count attendance statuses
+            document.querySelectorAll('.attendance-select').forEach(select => {
+                const subject = select.dataset.subject;
+                const status = select.value;
+                if (status === "Hadir") {
+                    attendanceData[subject].hadir++;
+                } else if (status === "Sakit") {
+                    attendanceData[subject].sakit++;
+                } else if (status === "Izin") {
+                    attendanceData[subject].izin++;
+                } else if (status === "Tidak Hadir") {
+                    attendanceData[subject].tidakHadir++;
                 }
             });
-
-            // Calculate absences
-            for (const subject in absenceData) {
-                absenceData[subject].absent = absenceData[subject].total - absenceData[subject].attended;
-            }
 
             const summaryDiv = document.getElementById('absenceSummary');
             if (!summaryDiv) return; // Defensive check
 
-            let summaryHtml = '<h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Ringkasan Ketidakhadiran</h2>';
+            let summaryHtml = '<h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Ringkasan Kehadiran</h2>';
             summaryHtml += '<ul class="list-disc list-inside space-y-2">';
-            let hasAbsences = false;
+            let hasAnyStatus = false;
 
-            for (const subject in absenceData) {
-                if (absenceData[subject].absent > 0) {
-                    hasAbsences = true;
-                    summaryHtml += `<li class="text-lg text-gray-700"><span class="font-semibold">${subject}</span>: ${absenceData[subject].absent} kali tidak hadir</li>`;
+            for (const subject in attendanceData) {
+                const data = attendanceData[subject];
+                if (data.hadir > 0 || data.sakit > 0 || data.izin > 0 || data.tidakHadir > 0) {
+                    hasAnyStatus = true;
+                    summaryHtml += `<li class="text-lg text-gray-700"><strong>${subject}</strong>: <br>
+                    - Hadir: ${data.hadir} kali <br>
+                    - Sakit: ${data.sakit} kali <br>
+                    - Izin: ${data.izin} kali <br>
+                    - Tidak Hadir: ${data.tidakHadir} kali
+                    </li>`;
                 }
             }
 
-            if (!hasAbsences) {
-                summaryHtml += '<li class="text-lg text-gray-700 text-center">Tidak ada ketidakhadiran tercatat. Bagus sekali!</li>';
+            if (!hasAnyStatus) {
+                summaryHtml += '<li class="text-lg text-gray-700 text-center">Tidak ada data kehadiran yang tercatat.</li>';
             }
             summaryHtml += '</ul>';
             summaryDiv.innerHTML = summaryHtml;
@@ -108,8 +115,8 @@
             loadState(); // Load all saved state when the page loads
             updateAbsenceSummary(); // Initial summary update
 
-            document.querySelectorAll('.attendance-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('change', saveState);
+            document.querySelectorAll('.attendance-select').forEach(select => {
+                select.addEventListener('change', saveState);
             });
 
             document.querySelectorAll('.class-mode-select').forEach(select => {
@@ -120,8 +127,8 @@
             document.getElementById('resetButton').addEventListener('click', () => {
                 const confirmation = confirm("Apakah Anda yakin ingin mereset semua data kehadiran dan mode kelas?");
                 if (confirmation) {
-                    document.querySelectorAll('.attendance-checkbox').forEach(checkbox => {
-                        checkbox.checked = false;
+                    document.querySelectorAll('.attendance-select').forEach(select => {
+                        select.value = "Hadir"; // Reset to default
                     });
                     document.querySelectorAll('.class-mode-select').forEach(select => {
                         select.value = "Offline"; // Reset to default
@@ -141,8 +148,8 @@
 
                 const rows = document.querySelectorAll('tbody tr');
                 rows.forEach(row => {
-                    // Skip the "KELAS MALAM SI 6" header row
-                    if (row.querySelector('td[colspan="21"]')) { // colspan updated
+                    // Skip the "KELAS MALAM SI 7" header row
+                    if (row.querySelector('td[colspan="21"]')) {
                         return;
                     }
 
@@ -153,13 +160,14 @@
                         rowData.push('"' + cells[i].textContent.trim().replace(/"/g, '""') + '"');
                     }
                     // Extract Attendance and Class Mode for each meeting
-                    for (let i = 5; i < cells.length; i++) { // Start from index 5 for meeting cells
-                        const checkbox = cells[i].querySelector('.attendance-checkbox');
-                        const select = cells[i].querySelector('.class-mode-select');
-                        let attendanceStatus = checkbox.checked ? "Hadir" : "Tidak Hadir";
-                        let classMode = select ? select.value : "";
+                    const meetingCells = row.querySelectorAll('.meeting-cell');
+                    meetingCells.forEach(meetingCell => {
+                        const attendanceSelect = meetingCell.querySelector('.attendance-select');
+                        const modeSelect = meetingCell.querySelector('.class-mode-select');
+                        let attendanceStatus = attendanceSelect ? attendanceSelect.value : "";
+                        let classMode = modeSelect ? modeSelect.value : "";
                         rowData.push('"' + attendanceStatus + '","' + classMode + '"');
-                    }
+                    });
                     csvContent += rowData.join(",") + "\n";
                 });
 
