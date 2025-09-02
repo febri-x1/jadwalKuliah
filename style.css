@@ -110,3 +110,8 @@ body{
                 font-size: 0.7rem;
             }
         }
+        /* New style for updated attendance selects */
+        .attendance-select.updated {
+            background-color: #4f46e5;
+            color: #ffffff;
+        }

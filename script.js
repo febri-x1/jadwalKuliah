@@ -28,6 +28,11 @@
 
         // Function to load attendance state and class modes from localStorage
         function loadState() {
+            // First, set the default to 'Tidak Hadir' for all
+            document.querySelectorAll('.attendance-select').forEach(select => {
+                select.value = "Tidak Hadir";
+            });
+
             const savedAttendance = localStorage.getItem('kuliahAttendance');
             if (savedAttendance) {
                 const attendance = JSON.parse(savedAttendance);
@@ -36,6 +41,10 @@
                     const meeting = select.dataset.meeting;
                     if (attendance[subject] && attendance[subject][meeting]) {
                         select.value = attendance[subject][meeting];
+                        // Add 'updated' class if the value is not the default 'Tidak Hadir'
+                        if (select.value !== "Tidak Hadir") {
+                            select.classList.add('updated');
+                        }
                     }
                 });
             }
@@ -64,7 +73,7 @@
             });
 
             allSubjects.forEach(subject => {
-                attendanceData[subject] = { total: 16, hadir: 0, sakit: 0, izin: 0, tidakHadir: 0 };
+                attendanceData[subject] = { total: 16, hadir: 0, sakit: 0, izin: 0, tidakAdaKelas: 0, tidakHadir: 0 };
             });
 
             // Count attendance statuses
@@ -77,6 +86,8 @@
                     attendanceData[subject].sakit++;
                 } else if (status === "Izin") {
                     attendanceData[subject].izin++;
+                } else if ( status === "tidakAdaKelas"){
+                    attendanceData[subject].tidakAdaKelas++;
                 } else if (status === "Tidak Hadir") {
                     attendanceData[subject].tidakHadir++;
                 }
@@ -91,12 +102,13 @@
 
             for (const subject in attendanceData) {
                 const data = attendanceData[subject];
-                if (data.hadir > 0 || data.sakit > 0 || data.izin > 0 || data.tidakHadir > 0) {
+                if (data.hadir > 0 || data.sakit > 0 || data.izin > 0 || data.tidakAdaKelas > 0 || data.tidakHadir > 0) {
                     hasAnyStatus = true;
                     summaryHtml += `<li class="text-lg text-gray-700"><strong>${subject}</strong>: <br>
                     - Hadir: ${data.hadir} kali <br>
                     - Sakit: ${data.sakit} kali <br>
                     - Izin: ${data.izin} kali <br>
+                    - Libur: ${data.tidakAdaKelas} kali <br>
                     - Tidak Hadir: ${data.tidakHadir} kali
                     </li>`;
                 }
@@ -116,7 +128,15 @@
             updateAbsenceSummary(); // Initial summary update
 
             document.querySelectorAll('.attendance-select').forEach(select => {
-                select.addEventListener('change', saveState);
+                select.addEventListener('change', (e) => {
+                    const selectedValue = e.target.value;
+                    if (selectedValue === 'Hadir' || selectedValue === 'Sakit' || selectedValue ==='tidakAdaKelas' || selectedValue === 'Izin') {
+                        e.target.classList.add('updated');
+                    } else {
+                        e.target.classList.remove('updated');
+                    }
+                    saveState();
+                });
             });
 
             document.querySelectorAll('.class-mode-select').forEach(select => {
@@ -128,7 +148,8 @@
                 const confirmation = confirm("Apakah Anda yakin ingin mereset semua data kehadiran dan mode kelas?");
                 if (confirmation) {
                     document.querySelectorAll('.attendance-select').forEach(select => {
-                        select.value = "Hadir"; // Reset to default
+                        select.value = "Tidak Hadir"; // Reset to new default
+                        select.classList.remove('updated');
                     });
                     document.querySelectorAll('.class-mode-select').forEach(select => {
                         select.value = "Offline"; // Reset to default
