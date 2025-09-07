@@ -102,10 +102,39 @@
                             }
                         </script>
                     </tr>
+                     <tr class="border-b border-gray-200">
+                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Selasa</td>
+                        <td class="py-4 px-6">Metodologi Penelitian</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">18:30</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">Winanti</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">FK203</td>
+                        <script>
+                            for (let i = 1; i <= 16; i++) {
+                                document.write('<td class="py-4 px-6 text-center meeting-cell">');
+                                document.write(
+                                    '<select class="attendance-select" data-subject="Metodologi Penelitian" data-meeting="' +
+                                    i + '">');
+                                document.write('<option value="Tidak Hadir" selected>Tidak Hadir</option>');
+                                document.write('<option value="Hadir">Hadir</option>');
+                                document.write('<option value="Sakit">Sakit</option>');
+                                document.write('<option value="Izin">Izin</option>');
+                                document.write('<option value="tidakAdaKelas">Libur</option>');
+                                document.write('</select>');
+                                document.write(
+                                    '<select class="class-mode-select" data-subject="Metodologi Penelitian" data-meeting="' +
+                                    i + '">');
+                                document.write('<option value="Offline">Offline</option>');
+                                document.write('<option value="Online">Online</option>');
+                                document.write('<option value="Libur">Libur</option>');
+                                document.write('</select>');
+                                document.write('</td>');
+                            }
+                        </script>
+                    </tr>
                     <tr class="border-b border-gray-200">
                         <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Selasa</td>
                         <td class="py-4 px-6">M. proyek SI</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">18:30</td>
+                        <td class="py-4 px-6 hidden sm:table-cell">20:00</td>
                         <td class="py-4 px-6 hidden sm:table-cell">Jainuri</td>
                         <td class="py-4 px-6 hidden sm:table-cell">FK203</td>
                         <script>
@@ -132,35 +161,7 @@
                             }
                         </script>
                     </tr>
-                    <tr class="border-b border-gray-200">
-                        <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Selasa</td>
-                        <td class="py-4 px-6">Metodologi Penelitian</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">20:00</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">Winanti</td>
-                        <td class="py-4 px-6 hidden sm:table-cell">FK203</td>
-                        <script>
-                            for (let i = 1; i <= 16; i++) {
-                                document.write('<td class="py-4 px-6 text-center meeting-cell">');
-                                document.write(
-                                    '<select class="attendance-select" data-subject="Metodologi Penelitian" data-meeting="' +
-                                    i + '">');
-                                document.write('<option value="Tidak Hadir" selected>Tidak Hadir</option>');
-                                document.write('<option value="Hadir">Hadir</option>');
-                                document.write('<option value="Sakit">Sakit</option>');
-                                document.write('<option value="Izin">Izin</option>');
-                                document.write('<option value="tidakAdaKelas">Libur</option>');
-                                document.write('</select>');
-                                document.write(
-                                    '<select class="class-mode-select" data-subject="Metodologi Penelitian" data-meeting="' +
-                                    i + '">');
-                                document.write('<option value="Offline">Offline</option>');
-                                document.write('<option value="Online">Online</option>');
-                                document.write('<option value="Libur">Libur</option>');
-                                document.write('</select>');
-                                document.write('</td>');
-                            }
-                        </script>
-                    </tr>
+                   
                     <tr class="border-b border-gray-200">
                         <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap sticky-col">Rabu</td>
                         <td class="py-4 px-6">Teknik Riset Oprsl</td>
